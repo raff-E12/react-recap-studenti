@@ -3,7 +3,7 @@ import { list_export } from '../utils/StatusGenerator';
 import EditForm from './EditForm';
 
 export default function StudentItems({exportList}) {
-  const export_list = exportList;
+  let export_list = exportList;
   const [isOpen, setOpen] = useState(null);
   return (
      <>
@@ -25,15 +25,3 @@ export default function StudentItems({exportList}) {
      </>
   )
 }
-
-/*   <li>
-       <div>
-        <strong>Giulia</strong> - Matematica
-          <span className="status">(attivo)</span>
-        </div>
-          <div className="actions">
-            <button className="edit-btn">Modifica</button>
-            <button className="delete-btn">Elimina</button>
-          </div>
-          <StudentForm />
-         </li> */
