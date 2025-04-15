@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { list_export } from '../utils/StatusGenerator';
 
-export default function EditForm({valueName, valueCourse, setName, id, setCourse, setActive, isActive}) {
+export default function EditForm({valueName, valueCourse, setName, idOp, setCourse, setActive, storage, ID}) {
   const [Name, paramName] = useState("");
   const [Course, paramCourse] = useState("");
   const [Status, paramStatus] = useState("");
@@ -28,15 +28,21 @@ export default function EditForm({valueName, valueCourse, setName, id, setCourse
   function handleClickResult(e) {
     e.preventDefault();
     const { name } = e.target;
-    if (id) {
+    if (idOp) {
       setName(Name);
       setActive(Status);
       setCourse(Course);
+
+      storage(ID, {
+        name: Name,
+        course: Course,
+        status: Status
+      })
     }
   }
 
   return (
-    <form className={`edit-form ${id ? "" : "unshow"}`} onSubmit={handleClickResult}>
+    <form className={`edit-form ${idOp ? "" : "unshow"}`} onSubmit={handleClickResult}>
     <label>
       Nome:
       <input type="text" name="name" value={Name} placeholder={valueName} onChange={handleFunParmsEditAdd}/>
