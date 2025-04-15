@@ -33,7 +33,7 @@ export default function StudentList({list, setslist}) {
           </div>
         </div>
          <ul id="student-list">
-          <StudentItems exportList={exportList}/>
+          <StudentItems exportList={exportList} setsList={setslist}/>
          </ul>
       </section>
   )
