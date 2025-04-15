@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { list_export } from '../utils/StatusGenerator';
 
-export default function EditForm({valueName, valueCourse, setName, idOp, setCourse, setActive, storage, ID}) {
+export default function EditForm({valueName, valueCourse, setName, idOp, setCourse, setActive}) {
   const [Name, paramName] = useState("");
   const [Course, paramCourse] = useState("");
   const [Status, paramStatus] = useState("");
@@ -32,12 +32,6 @@ export default function EditForm({valueName, valueCourse, setName, idOp, setCour
       setName(Name);
       setActive(Status);
       setCourse(Course);
-
-      storage(ID, {
-        name: Name,
-        course: Course,
-        status: Status
-      })
     }
   }
 

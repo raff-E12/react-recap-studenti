@@ -27,7 +27,7 @@ function App() {
       <h1>Gestione Studenti</h1>
       <div id="status-message" className="status-message"></div>
        <StudentForm />
-       <FilterBar />
+       <FilterBar list={isLocal} sets={setLocal}/>
        <StudentList list={isLocal} setslist={setLocal}/>
       </main>
     </>

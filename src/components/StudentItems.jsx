@@ -14,12 +14,11 @@ export default function StudentItems({exportList, setsList}) {
      <>
       {export_list.map(element =>{
         const ID_Card = isID === element.id;
-        const edited = editedItems[element.id];
         return(
           <li key={element.id} className={`${element.status === "attivo" ? "" : "inactive"}`}>
             <div>
-              <strong>{ edited?.name || element.name}</strong> { edited?.course || element.course}
-                <span className="status">({edited?.course || element.status})</span>
+              <strong>{ID_Card ? isName : element.name}</strong> { ID_Card ? isCourse : element.course}
+                <span className="status">({ ID_Card ? isActive : element.status})</span>
               </div>
             <div className="actions">
               <button className="edit-btn" onClick={() => {
@@ -34,7 +33,7 @@ export default function StudentItems({exportList, setsList}) {
             }}>Modifica</button>
               <button className="delete-btn">Elimina</button>
             </div>
-            {ID_Card && (<EditForm valueName={isName} valueCourse={isCourse} idOp={true} ID ={element.id} setName={setName} setCourse={setCourse} setActive={setActive} storage={(id, data)=>{setExport( prev => ({ ...prev, [id]: data}))}}/>)}
+            {ID_Card && <EditForm valueName={isName} valueCourse={isCourse} idOp={true} setName={setName} setCourse={setCourse} setActive={setActive} />}
           </li>
         )
       })}
