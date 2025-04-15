@@ -25,14 +25,14 @@ export default function StudentItems({exportList, setsList}) {
                   setOpen(null)
                 } else{
                  setOpen(element.id);
-                 setCourse(element.course);
                  setName(element.name);
+                 setCourse(element.course);
                  setActive(element.status);
                }
             }}>Modifica</button>
               <button className="delete-btn">Elimina</button>
             </div>
-            <EditForm valueName={isName} valueCourse={isCourse} id={isID} setName={setName} setCourse={setCourse} isActive={isActive} setActive={setActive} />
+            {ID_Card && (<EditForm valueName={isName} valueCourse={isCourse} id={true} setName={setName} setCourse={setCourse} isActive={isActive} setActive={setActive} />)}
           </li>
         )
       })}
