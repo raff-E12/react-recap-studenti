@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function StudentForm() {
+  const [isName, setParmName] = useState("");
+  const [isCourse, setParmCourse] = useState("");
+  const [isStatus, setParmStatus] = useState("");
+
+
   return (
     <section className="form-section">
     <h2>Aggiungi Studente</h2>
