@@ -10,6 +10,7 @@ function App() {
   const [isLocal, setLocal] = useState([]);
   const [filName, setFiltername] = useState("");
   const [filCourse, setFiltercourse] = useState("");
+  const [isResult, setResult] = useState(false);
 
   async function Export_data(){
      try {
@@ -20,17 +21,31 @@ function App() {
      }
   }
 
-  function handleParmsFilters() {
+  function handleParmsFiltersname() {
     if (filName !== "") {
-      console.log(filName)
-      const filter_name = isLocal.filter(element => element.name === filName);
-      console.log(filter_name);
-      return setLocal( list => {filter_name.length !== 0 && filter_name !== undefined ? filter_name : list});
+      setFiltercourse("");
+      const filter_name = isLocal.filter(element => element.name.includes(filName));
+      const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_name);
+      let condition_list_fill = filter_name.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_name : isLocal;
+      setResult(() => {return filter_name.length !== 0 ? false : true});
+      return setLocal(() => { return condition_list_fill});
     }
   }
 
-  useEffect(()=>{ Export_data() },[filName, filCourse]);
-  useEffect(()=>{ handleParmsFilters() }, [isLocal]);
+  function handleParmsFilterscourse() {
+    if (filCourse !== "") {
+      setFiltername("");
+      const filter_course = isLocal.filter(element => element.course.includes(filCourse));
+      const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_course);
+      let condition_list_fill = filter_course.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_course : isLocal;
+      setResult(() => {return filter_course.length !== 0 ? false : true});
+      return setLocal(() => { return condition_list_fill});
+    }
+  }
+
+  useEffect(()=>{ Export_data() },[filName, filCourse, isResult]);
+  useEffect(()=>{ handleParmsFiltersname(); handleParmsFilterscourse() }, [isLocal]);
+
   return (
     <>
       <main className="container">
@@ -38,7 +53,7 @@ function App() {
       <div id="status-message" className="status-message"></div>
        <StudentForm />
        <FilterBar nameFill={setFiltername} courseFill={setFiltercourse} valueName={filName} valueCourse={filCourse}/>
-       <StudentList list={isLocal} setslist={setLocal}/>
+       {isResult ? <div className='container overflow-box'><h4>404 - Non Trovato.</h4></div> : <StudentList list={isLocal} setslist={setLocal}/>}
       </main>
     </>
   )

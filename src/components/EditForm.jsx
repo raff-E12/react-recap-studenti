@@ -33,11 +33,16 @@ export default function EditForm({idOp, ID, list, sets}) {
        status: Status
     }
     // console.log(obj_add);
-    const list_find = list.find(element => element.id === ID).id;
-    console.log(list_find)
-    const add_list =  {id: list_find, ...obj_add};
-    console.log(list);
-    return list[list_find - 1] = add_list;
+    if (obj_add.name !== "" && obj_add.course !== "" && obj_add.status !== "") {
+        const list_find = list.find(element => element.id === ID).id;
+        console.log(list_find)
+        const add_list =  {id: list_find, ...obj_add};
+        console.log(list);
+        window.alert("La Richiesta di Campo è stata completata");
+        return list[list_find - 1] = add_list;
+    } else{
+      return window.alert("Completa i campi prima di inviare");
+    }
   }
 
   return (
