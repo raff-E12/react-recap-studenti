@@ -8,7 +8,7 @@ export default function EditForm({idOp, ID, list, sets}) {
 
   function handleFunParmsEditAdd(e) {
      const {name, value} = e.target;
-     console.log(name ,value);
+    //  console.log(name ,value);
      const StringValue = String(value);
 
      switch (name) {
@@ -27,25 +27,17 @@ export default function EditForm({idOp, ID, list, sets}) {
 
   function handleClickResult(e) {
     e.preventDefault();
-    const { name } = e.target;
-
-    // const obj_add = {
-    //    id: ID,
-    //    name: Name,
-    //    course: Course,
-    //    status: Status
-    // }
+    const obj_add = {
+       name: Name,
+       course: Course,
+       status: Status
+    }
     // console.log(obj_add);
-    const obj_add = {name: "Mario", course: "Biologia", status: "Attivo"};
     const list_find = list.find(element => element.id === ID).id;
     console.log(list_find)
     const add_list =  {id: list_find, ...obj_add};
- c
-    // sets((prev)=>{
-    //   const newList = [...prev];
-    //   newList[list_find] = {id: ID, ...obj_add};
-    //   return newList;
-    // });
+    console.log(list);
+    return list[list_find - 1] = add_list;
   }
 
   return (
