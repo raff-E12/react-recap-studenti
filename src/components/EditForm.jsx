@@ -37,9 +37,15 @@ export default function EditForm({idOp, ID, list, sets}) {
     // }
     // console.log(obj_add);
     const obj_add = {name: "Mario", course: "Biologia", status: "Attivo"};
-    console.log(obj_add);
-    // const add_list =  {id: list[list.length - 1].id + 1 || 1, ...obj_add};
-    // sets(value => ([{id: value.}]))
+    const list_find = list.find(element => element.id === ID).id;
+    console.log(list_find)
+    const add_list =  {id: list_find, ...obj_add};
+ c
+    // sets((prev)=>{
+    //   const newList = [...prev];
+    //   newList[list_find] = {id: ID, ...obj_add};
+    //   return newList;
+    // });
   }
 
   return (
