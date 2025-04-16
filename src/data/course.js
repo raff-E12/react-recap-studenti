@@ -1,81 +1,61 @@
 
-import axios from "axios";
+// Students Data Couse
 
 const students_course = [
     {
-      corso: "Matematica",
-      voto: 7,
-      inattivita: 2
+      id: 1,
+      course: "Matematica",
+      status: "attivo"
     },
     {
-      corso: "Fisica",
-      voto: 9,
-      inattivita: 0
+      id: 2,
+      course: "Fisica",
+      status: "inattivo",
     },
     {
-      corso: "Italiano",
-      voto: 6,
-      inattivita: 5
+      id: 3,
+      course: "Italiano",
+      status: "inattivo",
     },
     {
-      corso: "Storia",
-      voto: 8,
-      inattivita: 1
+      id: 4,
+      course: "Storia",
+      status: "attivo",
     },
     {
-      corso: "Inglese",
-      voto: 5,
-      inattivita: 8
+      id: 5,
+      course: "Inglese",
+      status: "attivo",
     },
     {
-      corso: "Chimica",
-      voto: 7,
-      inattivita: 3
+      id: 5,
+      course: "Chimica",
+      status: "inattivo",
     },
     {
-      corso: "Filosofia",
-      voto: 6,
-      inattivita: 6
+      id: 6,
+      course: "Filosofia",
+      status: "attivo",
     },
     {
-      corso: "Arte",
-      voto: 9,
-      inattivita: 0
+      id: 7,
+      course: "Arte",
+      status: "inattivo",
     },
     {
-      corso: "Educazione Fisica",
-      voto: 10,
-      inattivita: 0
+      id: 8,
+      course: "Educazione Fisica",
+      status: "attivo",
     },
     {
-      corso: "Informatica",
-      voto: 8,
-      inattivita: 2
+      id: 9,
+      course: "Informatica",
+      status: "inattivo",
     },
     {
-      corso: "Biologia",
-      voto: 7,
-      inattivita: 4
-    },
-    {
-      corso: "Geografia",
-      voto: 6,
-      inattivita: 7
-    },
-    {
-      corso: "Musica",
-      voto: 9,
-      inattivita: 1
-    },
-    {
-      corso: "Latino",
-      voto: 5,
-      inattivita: 9
-    },
-    {
-      corso: "Greco",
-      voto: 8,
-      inattivita: 3
+      id: 10,
+      course: "Biologia",
+      status: "attivo",
     }
   ];
 
