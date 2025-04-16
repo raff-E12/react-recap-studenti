@@ -4,7 +4,7 @@ import { list_export } from '../utils/StatusGenerator';
 
 export default function StudentList({list, setslist}) {
     const exportList = list;
-    console.log(exportList);
+    // console.log(exportList);
 
    function handleTargetValueinput(e) {
      const { id, value } = e.target;
