@@ -6,6 +6,14 @@ import FilterBar from './components/FilterBar'
 import { Api_Response, list_export } from './utils/StatusGenerator'
 import EditForm from './components/EditForm'
 
+/**
+ * Approfondimento su Sets():
+ * @argument new_Sets - il sets permette di memorizzare dei determinati valori unici nel suo insieme
+ *  eliminando i dupplicati che tendo a contrastare la dupplicazione e dare efficienza nel controllo dei valori in un array ad esempio.
+ * 
+ * @method has() - serve a trovare le differenze negli array o oggetti con proprietà diverse, esistenti o uguali durante la sua verifica.
+ */
+
 function App() {  
   const [isLocal, setLocal] = useState([]);
   const [filName, setFiltername] = useState("");
@@ -24,7 +32,7 @@ function App() {
   }
 
   // Funzione di unione dei risultati in maniera definitiva.
-  function handleParmsFiltersname() {
+  function handleParmsFilters() {
     let filter_course = [];
     let filter_name = [];
 
@@ -42,12 +50,12 @@ function App() {
       filter_course = isLocal.filter(element => element.course.includes(filCourse));
       setResult(() => {return filter_course.length !== 0 || filCourse === "" ? false : true});
       // console.log(filter_course);
-      setTrue(() => { return filter_course.find(element => element.course !== filCourse) ? true : false})
+      setTrue(() => { return filter_course.find(element => element.course === filCourse) ? false : true})
     } else{
       setTrue(value => value);
     }
 
-    const filter_combinated = [...filter_name, ...filter_course];
+    const filter_combinated = [...new Set([...filter_name, ...filter_course])]; // Tende ad evitare dupplicati in caso di ricerca dello stesso elemento.
     // console.log(filter_combinated);
     const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_combinated);
     let condition_list_fill = filter_combinated.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_combinated : isLocal;
@@ -76,7 +84,7 @@ function App() {
 
   // UseEffect sul campo di variabile nominate.
   useEffect(()=>{ Export_data() },[filName, filCourse, isResult]);
-  useEffect(()=>{ handleParmsFiltersname() }, [isLocal]);
+  useEffect(()=>{ handleParmsFilters() }, [isLocal]);
 
   return (
     <>
