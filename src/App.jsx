@@ -83,14 +83,14 @@ function App() {
   }
 
   // UseEffect sul campo di variabile nominate.
-  useEffect(()=>{ Export_data() },[filName, filCourse, isResult]);
+  useEffect(()=>{ Export_data() },[filName, filCourse ]);
   useEffect(()=>{ handleParmsFilters() }, [isLocal]);
 
   return (
     <>
       <main className="container">
       <h1>Gestione Studenti</h1>
-      <div id="status-message" className={`status-message ${isResult ? "error" : ""} ${isTrue ? "success" : ""}`}>{isResult ? "404 - Lista Vuota" : "Risultato Trovato"}</div>
+      <div id="status-message" className={`status-message ${isResult ? "error" : ""} ${isTrue ? "success" : ""}`}>{isResult ? "Riprova." : "Ottimo, operazione riuscita."}</div>
        <StudentForm list={isLocal} sets={setLocal}/>
        <FilterBar nameFill={setFiltername} courseFill={setFiltercourse} valueName={filName} valueCourse={filCourse}/>
        <StudentList list={isLocal} setslist={setLocal} removeClick={handleRemoveStudentsClick}/>
