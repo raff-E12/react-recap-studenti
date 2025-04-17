@@ -10,7 +10,7 @@ export default function StudentForm({list, sets}) {
     const { name, value } = e.target;
     const string_value = String(value);
     const export_obj = { name: "", course: "" ,status: ""};
-    console.log(string_value);
+    // console.log(string_value);
     switch (name) {
       case "name":
         setParmName(string_value);
@@ -29,7 +29,7 @@ export default function StudentForm({list, sets}) {
     export_obj.course = isCourse;
     export_obj.status = isStatus;
 
-    console.log(export_obj);
+    // console.log(export_obj);
     return export_obj
   }
 
@@ -39,7 +39,7 @@ export default function StudentForm({list, sets}) {
     if (isName !== "" && isCourse !== "" && isStatus !== "") {
       const obj_trasfer = handleValueParmsExport(e);
       const obj_student_composition = {id: list[list.length - 1].id + 1, ...obj_trasfer};
-      console.log(obj_student_composition);
+      // console.log(obj_student_composition);
       const new_list = [...list, obj_student_composition];
       return sets(new_list);
     } else {

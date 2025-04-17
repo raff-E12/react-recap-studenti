@@ -37,9 +37,9 @@ export default function EditForm({idOp, ID, list, sets}) {
     // console.log(obj_add);
     if (obj_add.name !== "" && obj_add.course !== "" && obj_add.status !== "") {
         const list_find = list.find(element => element.id === ID).id;
-        console.log(list_find)
+        // console.log(list_find)
         const add_list =  {id: list_find, ...obj_add};
-        console.log(list);
+        // console.log(list);
         window.alert("La Richiesta di Campo è stata completata");
         return list[list_find - 1] = add_list;
     } else{

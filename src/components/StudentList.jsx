@@ -11,11 +11,11 @@ export default function StudentList({list, setslist, removeClick}) {
      const { id, value } = e.target;
      const value_string = String(value);
      if (value_string === "name") {
-        console.log("Basato sul name");
+        // console.log("Basato sul name");
         const names_fil = [...exportList].sort((a, b) => a.name.localeCompare(b.name)); // Confronto fra stringhe facendo riferimento alla lingua locale.(localeCompare =>  Intl.Collator(Api)) 
         setslist(names_fil)
      } else if(value_string === "course"){
-      console.log("Basato sul corso");
+      // console.log("Basato sul corso");
       const course_fil = [...exportList].sort((a, b) => a.course.localeCompare(b.course));
       setslist(course_fil)
      }
