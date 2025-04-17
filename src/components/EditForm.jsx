@@ -6,6 +6,7 @@ export default function EditForm({idOp, ID, list, sets}) {
   const [Course, paramCourse] = useState("");
   const [Status, paramStatus] = useState("");
 
+  // Tracciamento dei parametri negli input per modifica della lista
   function handleFunParmsEditAdd(e) {
      const {name, value} = e.target;
     //  console.log(name ,value);
@@ -25,6 +26,7 @@ export default function EditForm({idOp, ID, list, sets}) {
      }
   }
 
+  // Esportazione dei parametri e modifica del post renderizzato
   function handleClickResult(e) {
     e.preventDefault();
     const obj_add = {

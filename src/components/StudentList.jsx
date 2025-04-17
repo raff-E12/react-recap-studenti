@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import StudentItems from './StudentItems'
 import { list_export } from '../utils/StatusGenerator';
 
-export default function StudentList({list, setslist}) {
+export default function StudentList({list, setslist, removeClick}) {
     const exportList = list;
     // console.log(exportList);
 
+  // Filtraggio e ordinamento dei valori forniti in lista in base alla valutazione in stringa.
    function handleTargetValueinput(e) {
      const { id, value } = e.target;
      const value_string = String(value);
@@ -33,7 +34,7 @@ export default function StudentList({list, setslist}) {
           </div>
         </div>
          <ul id="student-list">
-          <StudentItems exportList={exportList} setsList={setslist}/>
+          <StudentItems exportList={exportList} setsList={setslist} FunClick={removeClick}/>
          </ul>
       </section>
   )

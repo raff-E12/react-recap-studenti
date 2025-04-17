@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function FilterBar({nameFill, courseFill, valueName, valueCourse}) {
 
+  // Tracciamento dei parametri per il filtraggio in lista.
   function handleParmsAddFilters(e){
     const { id, value } = e.target;
     // console.log(id, value);

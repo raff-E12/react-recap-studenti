@@ -12,6 +12,7 @@ function App() {
   const [filCourse, setFiltercourse] = useState("");
   const [isResult, setResult] = useState(false);
 
+  // Esportazione Api
   async function Export_data(){
      try {
       const export_call = await Api_Response();
@@ -21,6 +22,7 @@ function App() {
      }
   }
 
+  // Funzione di test - Unione in futuro tra i due parametri di verifica.
   function handleParmsFiltersname() {
     if (filName !== "") {
       setFiltercourse("");
@@ -32,6 +34,7 @@ function App() {
     }
   }
 
+  // Funzione di test - Unione in futuro tra i due  parametri di verifica.
   function handleParmsFilterscourse() {
     if (filCourse !== "") {
       setFiltername("");
@@ -43,6 +46,14 @@ function App() {
     }
   }
 
+  // Implementazione di eliminazione degli studenti al click del bottone.
+  function handleRemoveStudentsClick(listIndex) {
+    const filter_remove = isLocal.filter((_, index) => index !== listIndex);
+    setResult(() => {return filter_remove.length !== 0 ? false : true})
+    setLocal(filter_remove);
+  }
+
+  // UseEffect sul campo di variabile nominate.
   useEffect(()=>{ Export_data() },[filName, filCourse, isResult]);
   useEffect(()=>{ handleParmsFiltersname(); handleParmsFilterscourse() }, [isLocal]);
 
@@ -51,9 +62,9 @@ function App() {
       <main className="container">
       <h1>Gestione Studenti</h1>
       <div id="status-message" className="status-message"></div>
-       <StudentForm />
+       <StudentForm list={isLocal} sets={setLocal}/>
        <FilterBar nameFill={setFiltername} courseFill={setFiltercourse} valueName={filName} valueCourse={filCourse}/>
-       {isResult ? <div className='container overflow-box'><h4>404 - Non Trovato.</h4></div> : <StudentList list={isLocal} setslist={setLocal}/>}
+       {isResult ? <div className='container overflow-box'><h4>404 - Lista Vuota.</h4></div> : <StudentList list={isLocal} setslist={setLocal} removeClick={handleRemoveStudentsClick}/>}
       </main>
     </>
   )
