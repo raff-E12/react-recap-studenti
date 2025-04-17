@@ -11,6 +11,7 @@ function App() {
   const [filName, setFiltername] = useState("");
   const [filCourse, setFiltercourse] = useState("");
   const [isResult, setResult] = useState(false);
+  const [isTrue, setTrue] = useState(false);
 
   // Esportazione Api
   async function Export_data(){
@@ -22,15 +23,36 @@ function App() {
      }
   }
 
-  // Funzione di test - Unione in futuro tra i due parametri di verifica.
+  // Funzione di unione dei risultati in maniera definitiva.
   function handleParmsFiltersname() {
+    let filter_course = [];
+    let filter_name = [];
+
     if (filName !== "") {
-      const filter_name = isLocal.filter(element => element.name.includes(filName));
-      const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_name);
-      let condition_list_fill = filter_name.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_name : isLocal;
-      setResult(() => {return filter_name.length !== 0 ? false : true});
-      return setLocal(() => { return condition_list_fill});
+      filter_name = isLocal.filter(element => element.name.includes(filName));
+      setResult(() => {return filter_name.length !== 0 || filName === "" ? false : true});
+      // console.log(filter_name.find( element => element.name !== filName) ? true : false)
+      setTrue(() => { return filter_name.find(element => element.name !== filName) ? true : false})
+      // console.log(filter_name);
+    } else{
+      setTrue(value => !value);
     }
+
+    if (filCourse !== "") {
+      filter_course = isLocal.filter(element => element.course.includes(filCourse));
+      setResult(() => {return filter_course.length !== 0 || filCourse === "" ? false : true});
+      // console.log(filter_course);
+      setTrue(() => { return filter_course.find(element => element.course !== filCourse) ? true : false})
+    } else{
+      setTrue(value => value);
+    }
+
+    const filter_combinated = [...filter_name, ...filter_course];
+    // console.log(filter_combinated);
+    const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_combinated);
+    let condition_list_fill = filter_combinated.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_combinated : isLocal;
+    return setLocal(() => { return condition_list_fill});
+
   }
 
   // // Funzione di test - Unione in futuro tra i due  parametri di verifica.
@@ -60,10 +82,10 @@ function App() {
     <>
       <main className="container">
       <h1>Gestione Studenti</h1>
-      <div id="status-message" className="status-message"></div>
+      <div id="status-message" className={`status-message ${isResult ? "error" : ""} ${isTrue ? "success" : ""}`}>{isResult ? "404 - Lista Vuota" : "Risultato Trovato"}</div>
        <StudentForm list={isLocal} sets={setLocal}/>
        <FilterBar nameFill={setFiltername} courseFill={setFiltercourse} valueName={filName} valueCourse={filCourse}/>
-       {isResult ? <div className='container overflow-box'><h4>404 - Lista Vuota.</h4></div> : <StudentList list={isLocal} setslist={setLocal} removeClick={handleRemoveStudentsClick}/>}
+       <StudentList list={isLocal} setslist={setLocal} removeClick={handleRemoveStudentsClick}/>
       </main>
     </>
   )
