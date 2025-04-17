@@ -25,7 +25,6 @@ function App() {
   // Funzione di test - Unione in futuro tra i due parametri di verifica.
   function handleParmsFiltersname() {
     if (filName !== "") {
-      setFiltercourse("");
       const filter_name = isLocal.filter(element => element.name.includes(filName));
       const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_name);
       let condition_list_fill = filter_name.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_name : isLocal;
@@ -34,17 +33,17 @@ function App() {
     }
   }
 
-  // Funzione di test - Unione in futuro tra i due  parametri di verifica.
-  function handleParmsFilterscourse() {
-    if (filCourse !== "") {
-      setFiltername("");
-      const filter_course = isLocal.filter(element => element.course.includes(filCourse));
-      const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_course);
-      let condition_list_fill = filter_course.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_course : isLocal;
-      setResult(() => {return filter_course.length !== 0 ? false : true});
-      return setLocal(() => { return condition_list_fill});
-    }
-  }
+  // // Funzione di test - Unione in futuro tra i due  parametri di verifica.
+  // function handleParmsFilterscourse() {
+  //   if (filCourse !== "") {
+  //     setFiltername("");
+  //     const filter_course = isLocal.filter(element => element.course.includes(filCourse));
+  //     const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_course);
+  //     let condition_list_fill = filter_course.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_course : isLocal;
+  //     setResult(() => {return filter_course.length !== 0 ? false : true});
+  //     return setLocal(() => { return condition_list_fill});
+  //   }
+  // }
 
   // Implementazione di eliminazione degli studenti al click del bottone.
   function handleRemoveStudentsClick(listIndex) {
@@ -55,7 +54,7 @@ function App() {
 
   // UseEffect sul campo di variabile nominate.
   useEffect(()=>{ Export_data() },[filName, filCourse, isResult]);
-  useEffect(()=>{ handleParmsFiltersname(); handleParmsFilterscourse() }, [isLocal]);
+  useEffect(()=>{ handleParmsFiltersname() }, [isLocal]);
 
   return (
     <>

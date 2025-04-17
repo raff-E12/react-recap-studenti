@@ -61,8 +61,8 @@ export default function StudentForm({list, sets}) {
       </label>
       <label>
         Stato:
-        <select name="status" required value={isStatus} onChange={handleValueParmsExport}>
-          <option value="attivo" selected >Attivo</option>
+        <select name="status" required value={isStatus} onChange={handleValueParmsExport} defaultValue={isStatus}>
+          <option value="attivo" >Attivo</option>
           <option value="inattivo">Inattivo</option>
         </select>
       </label>

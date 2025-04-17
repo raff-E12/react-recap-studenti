@@ -27,7 +27,7 @@ export default function StudentList({list, setslist, removeClick}) {
           <h2>Elenco Studenti</h2>
           <div className="sort-controls">
             <label>Ordina per:</label>
-            <select id="sort-by" onChange={handleTargetValueinput}>
+            <select id="sort-by" onChange={handleTargetValueinput} defaultValue={"name"}>
               <option value="name">Nome</option>
               <option value="course">Corso</option>
             </select>
