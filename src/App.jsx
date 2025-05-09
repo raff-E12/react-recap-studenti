@@ -83,7 +83,7 @@ function App() {
   }
 
   // UseEffect sul campo di variabile nominate.
-  useEffect(()=>{ handleParmsFilters(), console.log(isLocal); }, [isLocal]);
+  useEffect(()=>{ handleParmsFilters()}, [isLocal]);
   useEffect(()=>{ Export_data() },[filName, filCourse]);
 
   return (
