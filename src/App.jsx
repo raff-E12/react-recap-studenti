@@ -19,7 +19,7 @@ function App() {
   const [filName, setFiltername] = useState("");
   const [filCourse, setFiltercourse] = useState("");
   const [isResult, setResult] = useState(false);
-  const [isTrue, setTrue] = useState(false);
+  const [isTrue, setTrue] = useState(true);
 
   // Esportazione Api
   async function Export_data(){
@@ -58,8 +58,8 @@ function App() {
     const filter_combinated = [...new Set([...filter_name, ...filter_course])]; // Tende ad evitare dupplicati in caso di ricerca dello stesso elemento.
     // console.log(filter_combinated);
     const json_comparasion = JSON.stringify(isLocal) === JSON.stringify(filter_combinated);
-    let condition_list_fill = filter_combinated.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_combinated : isLocal;
-    return setLocal(() => { return condition_list_fill});
+    const condition_list_fill = filter_combinated.length !== 0 && isLocal.length !== 0 && !json_comparasion ? filter_combinated : isLocal;
+    return setLocal(() => condition_list_fill);
 
   }
 
@@ -83,14 +83,15 @@ function App() {
   }
 
   // UseEffect sul campo di variabile nominate.
-  useEffect(()=>{ Export_data() },[filName, filCourse ]);
-  useEffect(()=>{ handleParmsFilters() }, [isLocal]);
+  useEffect(()=>{ handleParmsFilters(), console.log(isLocal); }, [isLocal]);
+  useEffect(()=>{ Export_data() },[filName, filCourse]);
 
   return (
     <>
       <main className="container">
       <h1>Gestione Studenti</h1>
-      <div id="status-message" className={`status-message ${isResult ? "error" : ""} ${isTrue ? "success" : ""}`}>{isResult ? "Riprova." : "Ottimo, operazione riuscita."}</div>
+      <div id="status-message" className={`status-message ${isResult ? "error" : ""} 
+      ${isTrue ? "success" : ""}`}>{isResult ? "Riprova." : "Ottimo, operazione riuscita."}</div>
        <StudentForm list={isLocal} sets={setLocal}/>
        <FilterBar nameFill={setFiltername} courseFill={setFiltercourse} valueName={filName} valueCourse={filCourse}/>
        <StudentList list={isLocal} setslist={setLocal} removeClick={handleRemoveStudentsClick}/>

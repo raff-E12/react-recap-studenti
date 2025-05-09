@@ -40,8 +40,8 @@ export default function StudentForm({list, sets}) {
       const obj_trasfer = handleValueParmsExport(e);
       const obj_student_composition = {id: list[list.length - 1].id + 1, ...obj_trasfer};
       // console.log(obj_student_composition);
-      const new_list = [...list, obj_student_composition];
-      return sets(new_list);
+      // const new_list = [...list, obj_student_composition];
+      return sets(students => [...students, obj_student_composition]);
     } else {
       window.alert("Completa i campi prima di proseguire.");
     }
