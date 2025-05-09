@@ -35,22 +35,25 @@ function App() {
   function handleParmsFilters() {
     let filter_course = [];
     let filter_name = [];
+    let reg_expression = new RegExp(/^[A-Z]+$/);
 
-    if (filName !== "") {
+    if (filName !== "" ) {
       filter_name = isLocal.filter(element => element.name.includes(filName));
       setResult(() => {return filter_name.length !== 0 || filName === "" ? false : true});
       // console.log(filter_name.find( element => element.name !== filName) ? true : false)
       setTrue(() => { return filter_name.find(element => element.name !== filName) ? true : false})
+      reg_expression.test(filName);
       // console.log(filter_name);
     } else{
       setTrue(value => !value);
     }
 
-    if (filCourse !== "") {
+    if (filCourse !== "" ) {
       filter_course = isLocal.filter(element => element.course.includes(filCourse));
       setResult(() => {return filter_course.length !== 0 || filCourse === "" ? false : true});
       // console.log(filter_course);
-      setTrue(() => { return filter_course.find(element => element.course === filCourse) ? false : true})
+      setTrue(() => { return filter_course.find(element => element.course === filCourse) ? false : true});
+      reg_expression.test(filCourse);
     } else{
       setTrue(value => value);
     }
