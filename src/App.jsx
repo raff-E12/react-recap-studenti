@@ -35,10 +35,8 @@ function App() {
   function handleParmsFilters() {
     let filter_course = [];
     let filter_name = [];
-    let reg_expression = new RegExp(/^[A-Z]+$/);
 
     if (filName !== "" ) {
-      reg_expression.test(filName);
       filter_name = isLocal.filter(element => element.name.includes(filName));
       setResult(() => {return filter_name.length !== 0 || filName === "" ? false : true});
       // console.log(filter_name.find( element => element.name !== filName) ? true : false)
@@ -49,7 +47,6 @@ function App() {
     }
 
     if (filCourse !== "" ) {
-      reg_expression.test(filCourse);
       filter_course = isLocal.filter(element => element.course.includes(filCourse));
       setResult(() => {return filter_course.length !== 0 || filCourse === "" ? false : true});
       // console.log(filter_course);
